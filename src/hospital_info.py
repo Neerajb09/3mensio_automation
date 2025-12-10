@@ -1,5 +1,5 @@
-import pdfplumber
 import re
+from text_extraction_from_pdf import textExtractionFromPDF
 
 class HospitalInfoExtractor:
     def __init__(self, regex_patterns = {
@@ -9,12 +9,13 @@ class HospitalInfoExtractor:
     "doctor_name": r"Physician:\s*(.+)",
     "city": r"City:\s*(.+)",
     "country": r"Country:\s*(.+)"
-}):
+}, text =''):
         self.regex_patterns = regex_patterns
+        self.text = text
 
-    def extract_info(self, report_path):
+    def extract_info(self):
         extracted_info = {}
-        first_page_text = self._extract_first_page_text(report_path)
+        first_page_text = self.text
 
         for field, pattern in self.regex_patterns.items():
             match = re.search(pattern, first_page_text, re.IGNORECASE)
@@ -22,13 +23,3 @@ class HospitalInfoExtractor:
 
         return extracted_info
 
-    def _extract_first_page_text(self, report_path):
-        with pdfplumber.open(report_path) as pdf:
-            first_page = pdf.pages[0]
-            return first_page.extract_text() or ""
-
-# Example usage:
-
-extractor = HospitalInfoExtractor()
-info = extractor.extract_info("/nuvodata/User_data/neeraj/3mensio_automation/dataset/3.3mensio report_31%_R G_Dr. Rohit Mathur_MDM_Jodhpur_corelab.pdf")
-print(info)
