@@ -5,7 +5,7 @@ class HospitalInfoExtractor:
     def __init__(self, regex_patterns = {
     "hospital_name": r"Hospital:\s*(.+)",
     "creation_date": r"Creation Date:\s*(.+)",
-    "created_by": r"Created By:\s*(.+)",
+    "created_by": r"Created By:\s*(.*?)\s*Hospital",
     "doctor_name": r"Physician:\s*(.+)",
     "city": r"City:\s*(.+)",
     "country": r"Country:\s*(.+)"

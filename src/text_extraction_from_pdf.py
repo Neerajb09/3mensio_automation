@@ -1,4 +1,7 @@
 import pdfplumber
+import logging
+logging.disable(logging.CRITICAL)
+
 
 class textExtractionFromPDF:
     def __init__(self):
