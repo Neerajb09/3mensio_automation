@@ -4,7 +4,7 @@ from text_extraction_from_pdf import textExtractionFromPDF
 class HospitalInfoExtractor:
     def __init__(self, regex_patterns = {
     "hospital_name": r"Hospital:\s*(.+)",
-    "creation_date": r"Creation Date:\s*(.+)",
+    "creation_date": r"Creation Date:\s*(.*?)\s*Physician",
     "created_by": r"Created By:\s*(.*?)\s*Hospital",
     "doctor_name": r"Physician:\s*(.+)",
     "city": r"City:\s*(.+)",
